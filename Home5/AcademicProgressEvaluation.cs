@@ -143,7 +143,7 @@ namespace Home5
                 {
                     foreach (Student student in group)
                     {
-                        student.SetReward(reward);
+                        student.Reward = reward;
                     }
                 }
             }
