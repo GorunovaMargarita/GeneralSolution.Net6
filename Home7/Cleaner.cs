@@ -23,7 +23,7 @@ namespace Home7
         }
         public override string ToString()
         {
-            return String.Concat($"Position: {nameof(Cleaner)}, ", $"{nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(HireDate)}: {HireDate}.");
+            return String.Concat($"Position: {nameof(Cleaner)}, ", EmployeeToString());
         }
     }
 }

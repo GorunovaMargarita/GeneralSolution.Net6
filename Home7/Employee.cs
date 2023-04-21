@@ -18,5 +18,9 @@ namespace Home7
             HireDate = hireDate;
         }
         public abstract void DoWork();
+        public string EmployeeToString()
+        {
+            return $"{nameof(FirstName)}: {FirstName}, {nameof(LastName)}: {LastName}, {nameof(HireDate)}: {HireDate}.";
+        }
     }
 }
