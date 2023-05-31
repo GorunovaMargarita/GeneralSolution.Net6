@@ -25,6 +25,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home10", "Home10\Home10.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home11", "SeleniumTests\Home11.csproj", "{D09D395C-5692-459A-85C3-755C693883E7}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Home12", "Home12\Home12.csproj", "{410F6B9D-DC34-4FC0-B758-94F02D7A574C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwagLabs", "SwagLabs\SwagLabs.csproj", "{2AEA6E98-1EFC-4D53-8DA8-B486EB427213}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +79,14 @@ Global
 		{D09D395C-5692-459A-85C3-755C693883E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D09D395C-5692-459A-85C3-755C693883E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D09D395C-5692-459A-85C3-755C693883E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{410F6B9D-DC34-4FC0-B758-94F02D7A574C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{410F6B9D-DC34-4FC0-B758-94F02D7A574C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{410F6B9D-DC34-4FC0-B758-94F02D7A574C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{410F6B9D-DC34-4FC0-B758-94F02D7A574C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AEA6E98-1EFC-4D53-8DA8-B486EB427213}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AEA6E98-1EFC-4D53-8DA8-B486EB427213}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AEA6E98-1EFC-4D53-8DA8-B486EB427213}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AEA6E98-1EFC-4D53-8DA8-B486EB427213}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

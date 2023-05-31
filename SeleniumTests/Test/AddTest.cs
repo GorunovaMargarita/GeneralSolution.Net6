@@ -2,6 +2,7 @@
 using SeleniumTests.Calc;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,8 +70,9 @@ namespace SeleniumTests.Test
         public void RetryTest()
         {
             var rnd = new Random();
-            var actual = calculator.Add(rnd.Next(0,4), rnd.Next(0, 6));
-            Assert.That(actual, Is.GreaterThan(6));
+            var actual = calculator.Add(rnd.Next(0,5), rnd.Next(0, 7));
+
+            Assert.That(actual, Is.GreaterThan(8));
         }
     }
 }
