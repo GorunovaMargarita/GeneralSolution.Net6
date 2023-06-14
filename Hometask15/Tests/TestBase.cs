@@ -1,19 +1,30 @@
-﻿using NUnit.Framework;
+﻿using Allure.Commons;
+using NUnit.Allure.Core;
+using NUnit.Framework;
 using OpenQA.Selenium;
 
 namespace Hometask15.Tests
 {
+    [AllureNUnit]
     public class TestBase
     {
+        private AllureLifecycle allure;
         protected IWebDriver driver = Browser.Instance.Driver;
         protected ApplicationHelper appHelper = new ApplicationHelper(Browser.Instance.Driver);
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
+            allure = AllureLifecycle.Instance;
         }
         [TearDown]
         public void TearDown()
         {
+            if (TestContext.CurrentContext.Result.Outcome.Status == NUnit.Framework.Interfaces.TestStatus.Failed) 
+            { 
+                Screenshot screenshot = ((ITakesScreenshot)Browser.Instance.Driver).GetScreenshot();
+                byte[] bytes = screenshot.AsByteArray;
+                allure.AddAttachment("Screenshot", "image/png", bytes);
+            }
             Browser.Instance.CloseBrowser();
         }
     }

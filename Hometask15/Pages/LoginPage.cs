@@ -1,5 +1,6 @@
 ﻿using Hometask15.Elements;
 using Model;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 
 
@@ -18,7 +19,7 @@ namespace Hometask15.Pages
             Browser.Instance.NavigateToUrl(url);
             return this;
         }
-
+        [AllureStep]
         public LoginPage Login(User user)
         {
             userNameInput.GetElement().SendKeys(user.Name);

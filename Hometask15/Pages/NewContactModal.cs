@@ -1,6 +1,7 @@
 ﻿using Hometask15.Elements;
 using Hometask15.Helpers;
 using Hometask15.Model;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 
 namespace Hometask15.Pages
@@ -40,6 +41,7 @@ namespace Hometask15.Pages
         Button saveAndNewButton = new("SaveAndNew");
         Button CancelButton = new("Cancel");
 
+        [AllureStep]
         public NewContactModal FillNewContactForm(Contact contact)
         {
             salutationDropDown.Select(contact.Salutation);
@@ -74,6 +76,7 @@ namespace Hometask15.Pages
             return this;
         }
 
+        [AllureStep]
         public ContactPage ConfirmContactCreation()
         {
             saveButton.GetElement().Click();
@@ -81,15 +84,18 @@ namespace Hometask15.Pages
             return new ContactPage();
         }
 
+        [AllureStep]
         public NewContactModal ConfirmAndNewContractCreation()
         {
             saveAndNewButton.GetElement().Click();
             return this;
         }
 
-        public void CancelContractCreation()
+        [AllureStep]
+        public ContactPage CancelContractCreation()
         {
             CancelButton.GetElement().Click();
+            return new ContactPage();
         }
     }
 }

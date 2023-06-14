@@ -10,5 +10,10 @@
             Name = name;
             Password = password;
         }
+
+        public override string? ToString()
+        {
+            return $"Name: {Name}, password: {Password}";
+        }
     }
 }

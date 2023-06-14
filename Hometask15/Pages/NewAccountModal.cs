@@ -1,6 +1,7 @@
 ﻿using Hometask15.Elements;
 using Hometask15.Helpers;
 using Hometask15.Model;
+using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 
 namespace Hometask15.Pages
@@ -49,7 +50,7 @@ namespace Hometask15.Pages
             typeDropDown.Select("Prospect");
             saveButton.GetElement().Click();
         }
-
+        [AllureStep]
         public NewAccountModal FillNewAccountForm(Account account)
         {
             accountNameInput.EnterText(account.AccountName);
@@ -86,20 +87,20 @@ namespace Hometask15.Pages
 
             return this;
         }
-
+        [AllureStep]
         public AccountPage ConfirmAccountCreation()
         {
             saveButton.GetElement().Click();
             WaitHelper.WaitElement(Browser.Instance.Driver, By.CssSelector("span[title=Follow]"));
             return new AccountPage();
         }
-
+        [AllureStep]
         public NewAccountModal ConfirmAndNewAccountCreation()
         {
             saveAndNewButton.GetElement().Click();
             return this;
         }
-
+        [AllureStep]
         public void CancelAccountCreation()
         {
             CancelButton.GetElement().Click();
