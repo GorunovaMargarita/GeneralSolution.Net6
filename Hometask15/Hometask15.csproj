@@ -11,10 +11,14 @@
 
 	<ItemGroup>
 	  <None Remove="allureConfig.json" />
+	  <None Remove="NLog.config" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Content Include="allureConfig.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </Content>
+	  <Content Include="NLog.config">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	  </Content>
 	</ItemGroup>
@@ -23,6 +27,7 @@
 		<PackageReference Include="Bogus" Version="34.0.2" />
 		<PackageReference Include="FluentAssertions" Version="6.11.0" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
+		<PackageReference Include="NLog" Version="5.2.0" />
 		<PackageReference Include="NUnit" Version="3.13.3" />
 		<PackageReference Include="NUnit.Allure" Version="1.2.1.1" />
 		<PackageReference Include="NUnit3TestAdapter" Version="4.4.2" />

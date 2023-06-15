@@ -19,6 +19,7 @@ namespace Hometask15.Pages
 
         public override ContactPage Open()
         {
+            Log.Instance.Logger.Info($"Navigate to url: {Url}");
             Browser.Instance.NavigateToUrl(Url);
             return this;
         }
@@ -39,6 +40,7 @@ namespace Hometask15.Pages
 
         public ContactPage CheckContactWithAttExist(string attribute)
         {
+            Log.Instance.Logger.Info($"Search contact by attribute: {attribute}");
             searchField.EnterText(attribute);
             driver.FindElements(By.XPath($"//*[text()='{attribute}']")).Count().Should().BeGreaterThan(0);
             return this;
