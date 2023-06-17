@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Hometask15.Helpers
+namespace Core.Helpers
 {
     public static class DirectoryHelper
     {

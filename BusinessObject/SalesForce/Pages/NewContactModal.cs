@@ -1,10 +1,11 @@
-﻿using Hometask15.Elements;
-using Hometask15.Helpers;
-using Hometask15.Model;
+﻿using Core.Elements;
+using Core.Helpers;
+using Core;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
+using BusinessObject.SalesForce.Model;
 
-namespace Hometask15.Pages
+namespace BusinessObject.SalesForce.Pages
 {
     public class NewContactModal
     {
@@ -16,7 +17,7 @@ namespace Hometask15.Pages
         Input departmentInput = new("Department");
         Input birthdateInput = new("Birthdate");
         PartialTextDropDown reportsToDropDown = new("Reports To");
-        PartialTextDropDown leadSourceDropDown = new ("Lead Source");
+        PartialTextDropDown leadSourceDropDown = new("Lead Source");
         Input homePhoneInput = new("Home Phone");
         Input mobileInput = new("Mobile");
         Input otherPhoneInput = new("Other Phone");
@@ -39,7 +40,7 @@ namespace Hometask15.Pages
 
         Button saveButton = new("SaveEdit");
         Button saveAndNewButton = new("SaveAndNew");
-        Button CancelButton = new("Cancel");
+        Button CancelButton = new("CancelEdit");
 
         [AllureStep]
         public NewContactModal FillNewContactForm(Contact contact)

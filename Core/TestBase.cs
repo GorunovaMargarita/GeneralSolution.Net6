@@ -3,14 +3,13 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using OpenQA.Selenium;
 
-namespace Hometask15.Tests
+namespace Core
 {
     [AllureNUnit]
     public class TestBase
     {
         private AllureLifecycle allure;
         protected IWebDriver driver = Browser.Instance.Driver;
-        protected ApplicationHelper appHelper = new ApplicationHelper(Browser.Instance.Driver);
         [OneTimeSetUp]
         public void Setup()
         {

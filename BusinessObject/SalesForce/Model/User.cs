@@ -1,4 +1,4 @@
-﻿namespace Model
+﻿namespace BusinessObject.SalesForce.Model
 {
     public class User
     {

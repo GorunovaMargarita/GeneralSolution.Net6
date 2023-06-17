@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hometask15.Elements
+namespace Core.Elements
 {
     public class BaseElement
     {

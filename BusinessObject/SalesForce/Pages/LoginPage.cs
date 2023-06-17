@@ -1,11 +1,12 @@
-﻿using Hometask15.Elements;
-using Model;
+﻿using BusinessObject.SalesForce.Model;
+using Core;
+using Core.Elements;
 using NLog;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 
 
-namespace Hometask15.Pages
+namespace BusinessObject.SalesForce.Pages
 {
     public class LoginPage : BasePage
     {

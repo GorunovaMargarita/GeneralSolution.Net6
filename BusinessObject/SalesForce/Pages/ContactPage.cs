@@ -1,14 +1,15 @@
 ﻿using FluentAssertions;
-using Hometask15.Elements;
-using Hometask15.Helpers;
+using Core.Elements;
+using Core.Helpers;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Core;
 
-namespace Hometask15.Pages
+namespace BusinessObject.SalesForce.Pages
 {
     public class ContactPage : BasePage
     {
@@ -40,10 +41,24 @@ namespace Hometask15.Pages
 
         public ContactPage CheckContactWithAttExist(string attribute)
         {
+            ContactExist(attribute).Should().BeTrue();
+            return this;
+        }
+
+        public ContactPage CheckContactWithAttNotExist(string attribute)
+        {
+            ContactExist(attribute).Should().BeFalse();
+            return this;
+        }
+
+        public bool ContactExist(string attribute)
+        {
             Log.Instance.Logger.Info($"Search contact by attribute: {attribute}");
             searchField.EnterText(attribute);
-            driver.FindElements(By.XPath($"//*[text()='{attribute}']")).Count().Should().BeGreaterThan(0);
-            return this;
+            var elements = driver.FindElements(By.XPath($"//tbody//*[text()='{attribute}']"));
+            if (elements.Count() > 0)
+                return true;
+            else return false;
         }
     }
 }

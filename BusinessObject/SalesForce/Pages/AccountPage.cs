@@ -1,6 +1,7 @@
-﻿using FluentAssertions;
-using Hometask15.Elements;
-using Hometask15.Helpers;
+﻿using Core;
+using Core.Elements;
+using Core.Helpers;
+using FluentAssertions;
 using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hometask15.Pages
+namespace BusinessObject.SalesForce.Pages
 {
     public class AccountPage : BasePage
     {
@@ -16,7 +17,7 @@ namespace Hometask15.Pages
         Button newAccountButton = new(By.XPath("//div[@title='New']"));
         Button accountButton = new(By.XPath("//span[text()='Accounts']"));
         Input searchField = new(By.XPath("//Input[@name= 'Account-search-input']"));
-        
+        By successMessage = By.XPath("//div[@role='alertdialog']//..//span[contains(@class, 'Message')]");
 
         public override AccountPage Open()
         {
@@ -29,6 +30,17 @@ namespace Hometask15.Pages
         {
             newAccountButton.GetElement().Click();
             return new NewAccountModal();
+        }
+
+        public AccountPage CheckSuccessMessage(string accountName)
+        {
+            WaitHelper.WaitElement(driver, successMessage);
+            var text = driver.FindElement(successMessage).Text;
+            var expectedText = MessageContainer.AccountPage.CreationSuccessMessage(accountName);
+            Log.Instance.Logger.Info($"Getted message: <{text}>, expected message: <{expectedText}>");
+
+            text.Should().Be(expectedText);
+            return new AccountPage();
         }
 
         public AccountPage ReloadAccounts()

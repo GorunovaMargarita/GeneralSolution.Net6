@@ -1,7 +1,8 @@
-﻿using OpenQA.Selenium;
+﻿using Core;
+using OpenQA.Selenium;
 
 
-namespace Hometask15.Pages
+namespace BusinessObject.SalesForce.Pages
 {
     public abstract class BasePage
     {
@@ -9,7 +10,7 @@ namespace Hometask15.Pages
 
         public BasePage()
         {
-            this.driver = Browser.Instance.Driver;
+            driver = Browser.Instance.Driver;
         }
 
         public abstract BasePage Open();

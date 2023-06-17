@@ -1,12 +1,13 @@
 ﻿using Allure.Commons;
-using Hometask15.Model;
+using BusinessObject.SalesForce;
+using BusinessObject.SalesForce.Model;
 using NUnit.Allure.Attributes;
 using NUnit.Framework;
 
 
 namespace Hometask15.Tests
 {
-    public class CreateNewContact : TestBase
+    public class CreateNewContact : TestBaseSalesForce
     {
         [Test(Description ="Health check")]
         [AllureSeverity(SeverityLevel.critical)]
@@ -35,13 +36,13 @@ namespace Hometask15.Tests
         public void CreateNewContact_Cancel_NotCreated()
         {
             var contact = new Contact();
-            contact.LastName = Faker.NameFaker.LastName();
+            contact.LastName = Faker.NameFaker.LastName() + System.DateTime.Now.ToString();
 
             appHelper.InitContactCreation(UserBuilder.GetSalesForceUser())
                      .FillNewContactForm(contact)
                      .CancelContractCreation()
                      .ReloadContacts()
-                     .CheckContactWithAttExist(contact.LastName);
+                     .CheckContactWithAttNotExist(contact.LastName);
         }
     }
 }

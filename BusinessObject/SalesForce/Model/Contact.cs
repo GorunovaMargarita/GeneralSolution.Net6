@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Hometask15.Model
+namespace BusinessObject.SalesForce.Model
 {
     public class Contact
     {

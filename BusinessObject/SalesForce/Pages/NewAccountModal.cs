@@ -1,16 +1,16 @@
-﻿using Hometask15.Elements;
-using Hometask15.Helpers;
-using Hometask15.Model;
+﻿using BusinessObject.SalesForce.Model;
+using Core.Elements;
 using NUnit.Allure.Attributes;
 using OpenQA.Selenium;
 
-namespace Hometask15.Pages
+namespace BusinessObject.SalesForce.Pages
 {
     public class NewAccountModal
     {
         Input accountNameInput = new("Account Name");
         PartialTextDropDown parentAccountDropDown = new("Parent Account");
         Input accountNumberInput = new("Account Number");
+        Input accountSite = new("Account Site");
         DropDown typeDropDown = new("Type");
         DropDown industryDropDown = new("Industry");
         Input annualRevenueInput = new("Annual Revenue");
@@ -18,10 +18,10 @@ namespace Hometask15.Pages
         Input phoneInput = new("Phone");
         Input faxInput = new("Fax");
         Input websiteInput = new("Website");
-        Input tickerSymbolInput = new("TickerSymbol");
+        Input tickerSymbolInput = new("Ticker Symbol");
         DropDown ownershipDropDown = new("Ownership");
-        Input employeesInput = new("NumberOfEmployees");
-        Input sicCodeInput = new("Sic");
+        Input employeesInput = new("Employees");
+        Input sicCodeInput = new("SIC Code");
         Input billingStreetInput = new("Billing Street");
         Input billingCityInput = new("Billing City");
         Input billingStateProvinceInput = new("Billing State/Province");
@@ -54,8 +54,9 @@ namespace Hometask15.Pages
         public NewAccountModal FillNewAccountForm(Account account)
         {
             accountNameInput.EnterText(account.AccountName);
-            parentAccountDropDown.SelectByPartText(account.ParentAccount);
+            parentAccountDropDown.Select(account.ParentAccount);
             accountNumberInput.EnterText(account.AccountNumber);
+            accountSite.EnterText(account.AccountSite);
             typeDropDown.Select(account.Type);
             industryDropDown.Select(account.Industry);
             annualRevenueInput.EnterText(account.AnnualRevenue);
@@ -91,7 +92,8 @@ namespace Hometask15.Pages
         public AccountPage ConfirmAccountCreation()
         {
             saveButton.GetElement().Click();
-            WaitHelper.WaitElement(Browser.Instance.Driver, By.CssSelector("span[title=Follow]"));
+            //uncomment if we have a problem with pop up
+            //WaitHelper.WaitElement(Browser.Instance.Driver, By.CssSelector("span[title=Follow]"));
             return new AccountPage();
         }
         [AllureStep]
