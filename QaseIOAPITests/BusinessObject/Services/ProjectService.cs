@@ -1,5 +1,6 @@
 ﻿using QaseIOAPITests.BusinessObject.Model;
 using QaseIOAPITests.Core;
+using QaseIOAPITests.Configuration;
 using QaseIOAPITests.Models;
 using RestSharp;
 
@@ -11,9 +12,10 @@ namespace QaseIOAPITests.BusinessObject.Services
         public string ProjectEndpoint = "/project";
         public string GetProjectByCodeEndpoint = "/project/{code}";
         public string GetAllProjectsEndpoint = "/project?limit={limit}&offset={offset}";
-        public ProjectService() : base("https://api.qase.io/v1")
+
+        public ProjectService() : base(Configurator.API.BaseUrl)
         {
-            apiClient.AddAuthToken("45b857b964827fb6f065320fe41187fa7cdaf28ee1d37a76db9dffdfe0eb83c7");
+            apiClient.AddAuthToken(Configurator.API.Token);
         }
 
         public RestResponse GetProjectByCode(string code)
