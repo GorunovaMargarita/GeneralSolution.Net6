@@ -10,7 +10,7 @@ namespace QaseIOAPITests.BusinessObject.Services
     public class ProjectService : BaseService
     {
         public string ProjectEndpoint = "/project";
-        public string GetProjectByCodeEndpoint = "/project/{code}";
+        public string ProjectByCodeEndpoint = "/project/{code}";
         public string GetAllProjectsEndpoint = "/project?limit={limit}&offset={offset}";
 
         public ProjectService() : base(Configurator.API.BaseUrl)
@@ -20,13 +20,13 @@ namespace QaseIOAPITests.BusinessObject.Services
 
         public RestResponse GetProjectByCode(string code)
         {
-            var request = new RestRequest(GetProjectByCodeEndpoint).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
             return apiClient.Execute(request);
         }
 
         public Project GetProjectByCode<ProjectType>(string code) where ProjectType : Project
         {
-            var request = new RestRequest(GetProjectByCodeEndpoint).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByCodeEndpoint).AddUrlSegment("code", code);
             return apiClient.Execute<CommonResultResponse<Project>>(request).Result;
         }
 
@@ -45,7 +45,7 @@ namespace QaseIOAPITests.BusinessObject.Services
 
         public RestResponse DeleteProjectByCode(string code)
         {
-            var request = new RestRequest(GetProjectByCodeEndpoint, Method.Delete).AddUrlSegment("code", code);
+            var request = new RestRequest(ProjectByCodeEndpoint, Method.Delete).AddUrlSegment("code", code);
             return apiClient.Execute(request);
         }
     }

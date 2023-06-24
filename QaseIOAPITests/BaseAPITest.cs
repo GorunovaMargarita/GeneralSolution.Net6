@@ -1,4 +1,6 @@
 ﻿using NUnit.Framework;
+using QaseIOAPITests.ApiServiceStep;
+using QaseIOAPITests.BusinessObject.Services;
 using QaseIOAPITests.Core;
 using System;
 using System.Collections.Generic;
@@ -11,11 +13,14 @@ namespace QaseIOAPITests
     public class BaseAPITest
     {
         protected BaseAPIClient apiClient;
+        protected ProjectService projectService;
+        protected ApiProjectSteps apiProjectSteps;
+
         [OneTimeSetUp]
         public void Initial()
         {
-            //apiClient = new BaseAPIClient("https://api.qase.io/v1/");
-            //apiClient.AddAuthToken("45b857b964827fb6f065320fe41187fa7cdaf28ee1d37a76db9dffdfe0eb83c7");
+            projectService = new ProjectService();
+            apiProjectSteps = new ApiProjectSteps();
         }
     }
 }

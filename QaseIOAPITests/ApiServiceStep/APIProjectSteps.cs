@@ -23,7 +23,7 @@ namespace QaseIOAPITests.ApiServiceStep
             return JsonConvert.DeserializeObject<CommonResultResponse<Project>>(response.Content);
         }
 
-        public CommonResultResponse<Project> CreateProject(CreateProjectModel project)
+        public new CommonResultResponse<Project> CreateProject(CreateProjectModel project)
         {
             var response = base.CreateProject(project);
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.OK) || response.StatusCode.Equals(HttpStatusCode.BadRequest));
@@ -32,7 +32,7 @@ namespace QaseIOAPITests.ApiServiceStep
             return JsonConvert.DeserializeObject<CommonResultResponse<Project>>(response.Content);
         }
 
-        public CommonResultResponse<AllProjectResponse> GetAllProjects(int limit, int offset)
+        public new CommonResultResponse<AllProjectResponse> GetAllProjects(int limit, int offset)
         {
             var response = base.GetAllProjects(limit, offset);
             Assert.IsTrue(response.StatusCode.Equals(HttpStatusCode.OK) || response.StatusCode.Equals(HttpStatusCode.NotFound));

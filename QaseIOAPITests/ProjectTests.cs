@@ -8,30 +8,10 @@ namespace QaseIOAPITests
 {
     public class ProjectTests : BaseAPITest
     {
-        protected ProjectService projectService;
-        protected ApiProjectSteps apiProjectSteps;
-
-        [OneTimeSetUp]
-        public void InitialService()
-        {
-            projectService = new ProjectService();
-            apiProjectSteps = new ApiProjectSteps();
-        }
-
         [Test]
         public void GETProjectByCode_ExistingCode_OK()
         {
-            var projectMustBe = new Project
-            {
-                Code = "ANP",
-                Title = "AQA1 new pro",
-                Counts = new Counts
-                {
-                    Cases = 1,
-                    Suites = 0,
-                    Milestones = 0
-                }
-            };
+            var projectMustBe = ProjectHandler.existingProject;
 
             var project = apiProjectSteps.GetProjectByCode(projectMustBe.Code).Result;
 
@@ -55,11 +35,13 @@ namespace QaseIOAPITests
             var projectModel = new CreateProjectModel()
             {
                 Title = "Test",
-                Code = System.DateTime.Now.ToString("fffff"),
+                Code = System.DateTime.Now.ToString("fffffff"),
                 Access = "none"
             };
 
             var projectResponse = apiProjectSteps.CreateProject(projectModel);
+
+            ProjectHandler.AddProjectCodeForDelete(projectModel.Code);
 
             Assert.That(projectModel.Code, Is.EqualTo(projectResponse.Result.Code));
             Assert.IsTrue(projectResponse.Status);
@@ -68,14 +50,14 @@ namespace QaseIOAPITests
         [Test]
         public void POSTCreateProject_CodeNotUnic_BadRequest()
         {
-            var projectModel = new CreateProjectModel()
+            var project = new CreateProjectModel()
             {
                 Title = "Test",
-                Code = "ANP",
+                Code = ProjectHandler.existingProject.Code,
                 Access = "none"
             };
 
-            var response = apiProjectSteps.CreateProject(projectModel);
+            var response = apiProjectSteps.CreateProject(project);
 
             Assert.IsFalse(response.Status);
             Assert.That(response.ErrorMessage, Is.EqualTo(MessageContainer.DataInvalidError));
@@ -113,19 +95,12 @@ namespace QaseIOAPITests
         [Test]
         public void DELETEProject_ExistingProjectCode_OK()
         {
-            var projectModel = new CreateProjectModel()
-            {
-                Title = "Test",
-                Code = System.DateTime.Now.ToString("fffff"),
-                Access = "none"
-            };
+            var project = ProjectHandler.CreateAndGetRandomProject();
 
-            apiProjectSteps.CreateProject(projectModel);
-
-            var deleteResponse = apiProjectSteps.DeleteProjectByCode(projectModel.Code);
+            var deleteResponse = apiProjectSteps.DeleteProjectByCode(project.Code);
             Assert.IsTrue(deleteResponse.Status);
 
-            var getResponse = apiProjectSteps.GetProjectByCode(projectModel.Code);
+            var getResponse = apiProjectSteps.GetProjectByCode(project.Code);
             Assert.IsFalse(getResponse.Status);
             Assert.That(getResponse.ErrorMessage, Is.EqualTo(MessageContainer.NotFoundError("Project")));
         }
@@ -139,6 +114,12 @@ namespace QaseIOAPITests
 
             Assert.IsFalse(response.Status);
             Assert.That(response.ErrorMessage, Is.EqualTo(MessageContainer.NotFoundError("Project")));
+        }
+
+        [TearDown]
+        public void CleanProjectData()
+        {
+            ProjectHandler.DeleteProjects();
         }
     }
 }
