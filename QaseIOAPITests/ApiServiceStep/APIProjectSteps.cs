@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using NLog;
 using NUnit.Framework;
 using QaseIOAPITests.BusinessObject.Model;
 using QaseIOAPITests.BusinessObject.Services;

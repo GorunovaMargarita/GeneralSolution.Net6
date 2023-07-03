@@ -13,5 +13,10 @@ namespace QaseIOAPITests.BusinessObject.Model
         public string Description { get; set; }
         public string Access { get; set; }
         public string Group { get; set; }
+
+        public override string ToString()
+        {
+            return $"\r\nCreateProjectModel: \r\n Title: {Title}, \r\n Code: {Code}, \r\n Description: {Description}, \r\n Access: {Access}, \r\n Group: {Group}";
+        }
     }
 }
