@@ -7,7 +7,7 @@ trigger:
 - branch1
 
 pool:
-  name: 'Default'
+  name: 'Margaritas'
 
 steps:
 - task: NuGetCommand@2
