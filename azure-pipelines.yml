@@ -15,19 +15,17 @@ steps:
   inputs:
     command: 'restore'
     restoreSolution: '$(solution)'
-- task: NuGetToolInstaller@1
+- task: DotNetCoreCLI@2
+  displayName: 'restore NuGet, DotNetCoreCLI task'
+  inputs:
+    command: 'restore'
+    projects: '**/*/*.csproj'
 - task: DotNetCoreCLI@2
   displayName: 'Build solution'
   inputs:
     command: 'build'
     arguments: '--configuration Debug'
 
-- task: VSBuild@1
-  inputs:
-    platform: 'x64'
-    solution: '$(solution)'
-    configuration: '$(buildConfiguration)'
-    msbuildArgs: '/p:AppxBundlePlatforms="$(buildPlatform)" /p:AppxPackageDir="$(appxPackageDir)" /p:AppxBundle=Always /p:UapAppxPackageBuildMode=StoreUpload'
 - task: DotNetCoreCLI@2
   displayName: 'Run test'
   inputs:
