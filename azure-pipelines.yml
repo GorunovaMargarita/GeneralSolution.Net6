@@ -16,11 +16,6 @@ steps:
     command: 'restore'
     restoreSolution: '$(solution)'
 - task: DotNetCoreCLI@2
-  displayName: 'restore NuGet, DotNetCoreCLI task'
-  inputs:
-    command: 'restore'
-    projects: '**/*/*.csproj'
-- task: DotNetCoreCLI@2
   displayName: 'Build solution'
   inputs:
     command: 'build'
